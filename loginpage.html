@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Sign Up</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React & ReactDOM CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-white min-h-screen flex items-center justify-center">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const LoginPage = ({ switchToSignUp }) => (
+            <div className="bg-white/10 backdrop-blur-sm p-10 rounded-2xl shadow-2xl w-full max-w-md">
+                <h2 className="text-white text-3xl font-bold text-center mb-8">Welcome Back</h2>
+                <form className="flex flex-col gap-6">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-white text-black font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
+                    >
+                        Login
+                    </button>
+                </form>
+                <p className="text-center text-white mt-6">
+                    Don’t have an account?{" "}
+                    <button onClick={switchToSignUp} className="underline text-gray-300 hover:text-white">
+                        Sign up
+                    </button>
+                </p>
+            </div>
+        );
+
+        const SignUpPage = ({ switchToLogin }) => (
+            <div className="bg-white/10 backdrop-blur-sm p-10 rounded-2xl shadow-2xl w-full max-w-md">
+                <h2 className="text-white text-3xl font-bold text-center mb-8">Create an Account</h2>
+                <form className="flex flex-col gap-6">
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        className="px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-white text-black font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
+                    >
+                        Sign Up
+                    </button>
+                </form>
+                <p className="text-center text-white mt-6">
+                    Already have an account?{" "}
+                    <button onClick={switchToLogin} className="underline text-gray-300 hover:text-white">
+                        Login
+                    </button>
+                </p>
+            </div>
+        );
+
+        const App = () => {
+            const [isSignUp, setIsSignUp] = React.useState(false);
+            return isSignUp ? (
+                <SignUpPage switchToLogin={() => setIsSignUp(false)} />
+            ) : (
+                <LoginPage switchToSignUp={() => setIsSignUp(true)} />
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
